@@ -11,7 +11,7 @@ const About = lazy(() => import('../pages/About'))
 const Blog = lazy(() => import('../pages/Blog'))
 const Post = lazy(() => import('../pages/Post'))
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = import.meta.env.MODE === 'production'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
