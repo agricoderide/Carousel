@@ -1,0 +1,1 @@
+import{j as s}from"./index-BYulMBso.js";function r(){return s.jsxs("div",{children:[s.jsx("h1",{children:"Sobre nós"}),s.jsx("p",{children:"Esta é a página sobre nós."}),s.jsx("p",{children:"Estamos felizes em tê-lo aqui!"})]})}export{r as default};
