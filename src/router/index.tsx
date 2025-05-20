@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
-import MainLayout from '../layouts/MainLayout'
+import MainLayout from '../layouts/MainLayout.tsx'
 
 const Home = lazy(() => import('../pages/Home'))
 const About = lazy(() => import('../pages/About'))
