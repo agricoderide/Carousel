@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   return {
-    plugins: [react()],
-    base: mode === 'production' ? '/Carousel/' : '/Carousel/',
+    plugins: [react(), tailwindcss()],
+    base: '/Carousel/',
   }
 })
