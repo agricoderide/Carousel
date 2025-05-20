@@ -1,1 +1,0 @@
-import{u as t,j as s}from"./index-np3tIwvb.js";function e(){const{id:o}=t();return s.jsxs("div",{children:[s.jsxs("h1",{children:["Post: ",o]}),s.jsx("p",{children:"Conteúdo do post aqui..."})]})}export{e as default};
