@@ -51,6 +51,6 @@ export const router = createBrowserRouter(
     </Route>,
   ),
   {
-    basename: isProd ? '/Carousel' : '/',
+    basename: isProd ? '/Carousel' : '/Carousel',
   },
 )
