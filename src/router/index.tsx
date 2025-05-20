@@ -11,6 +11,8 @@ const About = lazy(() => import('../pages/About'))
 const Blog = lazy(() => import('../pages/Blog'))
 const Post = lazy(() => import('../pages/Post'))
 
+const isProd = process.env.NODE_ENV === 'production'
+
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout />}>
@@ -49,6 +51,6 @@ export const router = createBrowserRouter(
     </Route>,
   ),
   {
-    basename: '/',
+    basename: isProd ? '/Carousel' : '/',
   },
 )
