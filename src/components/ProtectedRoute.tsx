@@ -11,22 +11,17 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const { isLoading, error } = useAuth() // Verifica se o usuário está autenticado
+  const { isLoading, error } = useAuth()
 
   if (isLoading) {
-    return <div>Loading...</div> // Exibe um loading enquanto verifica a autenticação
+    return <div>Loading...</div>
   }
 
   if (error) {
-    return <Navigate to='/login' /> // Usando 'Navigate' para redirecionar para a página de login se não autenticado
+    return <Navigate to='/login' />
   }
 
-  return (
-    <Route
-      {...rest}
-      element={<Component />} // No React Router v6, usamos 'element' para renderizar o componente
-    />
-  )
+  return <Route {...rest} element={<Component />} />
 }
 
 export default ProtectedRoute

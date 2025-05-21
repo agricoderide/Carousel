@@ -2,13 +2,7 @@ import { useEffect, useState } from 'react'
 import { Container, Grid, CircularProgress } from '@mui/material'
 import axios from 'axios'
 import Post from '../components/Post'
-
-interface PostType {
-  id: string
-  title: string
-  description: string
-  image: string
-}
+import type { PostType } from '../types/post'
 
 const Blog = () => {
   const [posts, setPosts] = useState<PostType[]>([])
@@ -16,10 +10,8 @@ const Blog = () => {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Função para buscar os posts
     const fetchPosts = async () => {
       try {
-        // Supondo que você tenha o token JWT armazenado no localStorage
         const token = localStorage.getItem('token')
 
         if (!token) {
@@ -36,6 +28,8 @@ const Blog = () => {
             },
           },
         )
+
+        console.log('Posts fetched:', response)
 
         setPosts(response.data)
         setLoading(false)
