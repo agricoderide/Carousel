@@ -1,32 +1,8 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import type { PostType } from '../types/post'
-
-// src/types/post.ts
-// export interface PostType {
-//   id: string;
-//   description: string;
-//   author: {
-//     email: string;
-//     name: string;
-//   };
-//   authorId: string;
-//   content: string;
-//   createdAt: string;
-//   image: string;
-//   title: string;
-// }
+import { formatDate } from '../utils/common'
 
 export default function Post({ post }: { post: PostType }) {
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    }
-    return new Date(dateString).toLocaleDateString('pt-BR', options)
-  }
   const formattedDate = formatDate(post.createdAt)
 
   return (
