@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# 🚀 Deploy de Aplicação React + Vite no GitHub Pages
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto utiliza [Vite](https://vitejs.dev/) para desenvolvimento e é publicado via [GitHub Pages](https://pages.github.com/).
 
-Currently, two official plugins are available:
+## 📦 Instalação da dependência
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install --save-dev gh-pages
+```
 
-## Expanding the ESLint configuration
+## 🔧 Configuração
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. `package.json`
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
+Adiciona a propriedade `homepage` (no topo do ficheiro):
+
+```json
+"homepage": "https://<UTILIZADOR>.github.io/<NOME_DO_REPOSITORIO>"
+```
+
+Exemplo:
+
+```json
+"homepage": "https://agricoderide.github.io/Carousel"
+"homepage": "https://palhinhax.github.io/Carousel"
+```
+
+Adiciona também os seguintes scripts:
+
+```json
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+}
+```
+
+### 2. `vite.config.ts`
+
+Adiciona a base com o nome do repositório:
+
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/<NOME_DO_REPOSITORIO>/',
 })
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Exemplo:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```ts
+base: '/Carousel/',
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🚀 Deploy
+
+Para fazer o deploy da aplicação, corre:
+
+```bash
+npm run deploy
+```
+
+## 🌐 Acesso
+
+Depois do deploy, a aplicação estará disponível em:
+
+```
+https://<UTILIZADOR>.github.io/<NOME_DO_REPOSITORIO>
+```
+
+Exemplo:
+
+```
+https://agricoderide.github.io/Carousel
+https://palhinhax.github.io/Carousel
 ```
