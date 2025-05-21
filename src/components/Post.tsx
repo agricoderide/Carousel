@@ -24,7 +24,6 @@ export default function Post({ post }: { post: PostType }) {
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit', // Agora também inclui os segundos
     }
     return new Date(dateString).toLocaleDateString('pt-BR', options)
   }
