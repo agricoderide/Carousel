@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://palhinhax.github.io/Carousel/",
+  "homepage": "https://agricoderide.github.io/Carousel/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -13,13 +13,18 @@
     "preview": "vite preview --base=/Carousel/"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
+    "@phosphor-icons/react": "^2.1.8",
     "@tailwindcss/vite": "^4.1.7",
+    "dayjs": "^1.11.13",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.0",
-    "tailwindcss": "^4.1.7"
+    "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
