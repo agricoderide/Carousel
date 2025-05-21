@@ -9,13 +9,21 @@ import MainLayout from '../layouts/MainLayout.tsx'
 const Home = lazy(() => import('../pages/Home'))
 const About = lazy(() => import('../pages/About'))
 const Blog = lazy(() => import('../pages/Blog'))
-const Post = lazy(() => import('../pages/Post'))
+const Post = lazy(() => import('../components/Post.tsx'))
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout />}>
       <Route
         index
+        element={
+          <Suspense fallback={<p>Carregando...</p>}>
+            <Home />
+          </Suspense>
+        }
+      />
+      <Route
+        path='home'
         element={
           <Suspense fallback={<p>Carregando...</p>}>
             <Home />

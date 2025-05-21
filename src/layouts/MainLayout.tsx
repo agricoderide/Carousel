@@ -1,44 +1,54 @@
 import { Outlet } from 'react-router-dom'
-import Header from '../components/Header'
+import ResponsiveAppBar from '../components/ResponsiveAppBar'
+import BasicBreadcrumbs from '../components/BasicBreadcrumbs'
+import { Box, CssBaseline, Typography } from '@mui/material'
 
 export default function MainLayout() {
   return (
-    <div style={styles.container}>
-      <Header />
-      <main style={styles.main}>
-        <Outlet />
-      </main>
-      <footer style={styles.footer}>
-        <p>
-          &copy; {new Date().getFullYear()} Agricoderide Blog. Todos os direitos
-          reservados.
-        </p>
-      </footer>
-    </div>
-  )
-}
+    <>
+      <CssBaseline />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: '100vh',
+          height: '100vh', // garante que ocupa tudo
+        }}
+      >
+        <ResponsiveAppBar />
 
-const styles = {
-  container: {
-    fontFamily: 'sans-serif',
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column' as const,
-    backgroundColor: '#f9f9f9',
-  },
-  main: {
-    flex: 1,
-    padding: '2rem',
-    maxWidth: '900px',
-    margin: '0 auto',
-    width: '100%',
-  },
-  footer: {
-    padding: '1rem',
-    textAlign: 'center' as const,
-    borderTop: '1px solid #ddd',
-    backgroundColor: '#fff',
-    fontSize: '0.9rem',
-    color: '#555',
-  },
+        <Box
+          component='main'
+          sx={{
+            flexGrow: 1,
+            overflow: 'auto', // scrolla o conteúdo aqui
+            px: 2,
+            py: 4,
+          }}
+        >
+          <Box sx={{ maxWidth: '900px', mx: 'auto', width: '100%' }}>
+            <BasicBreadcrumbs />
+            <Outlet />
+          </Box>
+        </Box>
+
+        <Box
+          component='footer'
+          sx={{
+            py: 2,
+            px: 2,
+            textAlign: 'center',
+            borderTop: '1px solid #ddd',
+            backgroundColor: '#fff',
+            fontSize: '0.9rem',
+            color: '#555',
+          }}
+        >
+          <Typography variant='body2'>
+            &copy; {new Date().getFullYear()} Agricoderide Blog.
+          </Typography>
+        </Box>
+      </Box>
+    </>
+  )
 }
