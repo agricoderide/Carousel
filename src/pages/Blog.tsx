@@ -1,35 +1,75 @@
-import { Container } from '@mui/material'
-
-import Grid from '@mui/material/Grid'
+import { useEffect, useState } from 'react'
+import { Container, Grid, CircularProgress } from '@mui/material'
+import axios from 'axios'
 import Post from '../components/Post'
 
-const posts = [
-  {
-    id: '1',
-    title: 'Primeiro Post',
-    description: 'Este é o primeiro post do blog.',
-    image: '/assets/image-abstract-1.png',
-  },
-  {
-    id: '2',
-    title: 'Segundo Post',
-    description: 'Algumas ideias interessantes aqui.',
-    image: '/assets/image-abstract-2.png',
-  },
-  {
-    id: '3',
-    title: 'Terceiro Post',
-    description: 'Mais conteúdo incrível vindo aí!',
-    image: '/assets/image-business-1.png',
-  },
-]
+interface PostType {
+  id: string
+  title: string
+  description: string
+  image: string
+}
 
-export default function Blog() {
+const Blog = () => {
+  const [posts, setPosts] = useState<PostType[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    // Função para buscar os posts
+    const fetchPosts = async () => {
+      try {
+        // Supondo que você tenha o token JWT armazenado no localStorage
+        const token = localStorage.getItem('token')
+
+        if (!token) {
+          setError('Token is missing')
+          setLoading(false)
+          return
+        }
+
+        const response = await axios.get<PostType[]>(
+          'http://localhost:3000/posts/feed',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+
+        setPosts(response.data)
+        setLoading(false)
+      } catch (err) {
+        console.error('Error fetching posts:', err)
+        setError('Failed to fetch posts')
+        setLoading(false)
+      }
+    }
+
+    fetchPosts()
+  }, [])
+
+  if (loading) {
+    return (
+      <Container sx={{ py: 4 }}>
+        <CircularProgress />
+      </Container>
+    )
+  }
+
+  if (error) {
+    return (
+      <Container sx={{ py: 4 }}>
+        <p>{error}</p>
+      </Container>
+    )
+  }
+
   return (
     <Container sx={{ py: 4 }}>
       <Grid container spacing={4}>
         {posts.map(post => (
-          <Grid key={post.id} size={{ xs: 12, sm: 6, md: 6 }}>
+          <Grid key={post.id}>
             <Post post={post} />
           </Grid>
         ))}
@@ -37,3 +77,5 @@ export default function Blog() {
     </Container>
   )
 }
+
+export default Blog

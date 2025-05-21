@@ -5,11 +5,13 @@ import {
 } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import MainLayout from '../layouts/MainLayout.tsx'
+import ProtectedRoute from '../components/ProtectedRoute' // Importando o componente de rota protegida
 
 const Home = lazy(() => import('../pages/Home'))
 const About = lazy(() => import('../pages/About'))
 const Blog = lazy(() => import('../pages/Blog'))
-const Post = lazy(() => import('../components/Post.tsx'))
+const Login = lazy(() => import('../pages/Login'))
+// const Post = lazy(() => import('../components/Post.tsx'))
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,14 @@ export const router = createBrowserRouter(
         element={
           <Suspense fallback={<p>Carregando...</p>}>
             <Home />
+          </Suspense>
+        }
+      />
+      <Route
+        path='login'
+        element={
+          <Suspense fallback={<p>Carregando...</p>}>
+            <Login />
           </Suspense>
         }
       />
@@ -34,7 +44,7 @@ export const router = createBrowserRouter(
         path='about'
         element={
           <Suspense fallback={<p>Carregando...</p>}>
-            <About />
+            <ProtectedRoute component={About} />{' '}
           </Suspense>
         }
       />
@@ -49,9 +59,7 @@ export const router = createBrowserRouter(
       <Route
         path='blog/:id'
         element={
-          <Suspense fallback={<p>Carregando...</p>}>
-            <Post />
-          </Suspense>
+          <Suspense fallback={<p>Carregando...</p>}>{/* <Post /> */}</Suspense>
         }
       />
     </Route>,
