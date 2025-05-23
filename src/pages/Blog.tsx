@@ -21,7 +21,7 @@ const Blog = () => {
         }
 
         const response = await axios.get<PostType[]>(
-          'http://localhost:3000/posts/feed',
+          `${import.meta.env.VITE_API_URL}/posts/feed`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

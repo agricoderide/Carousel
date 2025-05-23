@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
       }
 
       const response = await axios.post<LoginResponse>(
-        'http://localhost:3000/auth/login',
+        `${import.meta.env.VITE_API_URL}/auth/login`,
         {
           email,
           password,

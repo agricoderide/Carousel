@@ -10,11 +10,14 @@ const fetchUserData = async () => {
     throw new Error('User is not authenticated')
   }
 
-  const response = await axios.get('http://localhost:3000/protected', {
-    headers: {
-      Authorization: `Bearer ${token}`,
+  const response = await axios.get(
+    `${import.meta.env.VITE_API_URL}/protected`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-  })
+  )
 
   return response.data
 }
