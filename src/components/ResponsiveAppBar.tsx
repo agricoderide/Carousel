@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { useState } from 'react'
 import type { MouseEvent } from 'react'
 import AppBar from '@mui/material/AppBar'
